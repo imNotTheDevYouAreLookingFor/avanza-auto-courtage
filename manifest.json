@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Avanza Courtage Optimizer",
+  "version": "1.0",
+  "description": "Automatically switches to the best courtage class on Avanza based on order size.",
+  "permissions": ["activeTab", "scripting"],
+  "host_permissions": ["https://www.avanza.se/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://www.avanza.se/*"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}
