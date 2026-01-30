@@ -9,6 +9,7 @@
 - **Jag tar inget som helst ansvar** för att pluginet fungerar som det ska.
 - Jag ansvarar inte för eventuella felaktiga orders, missade courtage-byten eller andra ekonomiska förluster.
 - Det finns inga garantier. Dubbelkolla alltid dina orders innan du skickar iväg dem.
+- Observera: Användning av detta tillägg kan strida mot Avanzas användarvillkor och API-regler. Kontrollera deras villkor själv innan användning.
 
 ## Funktioner
 
