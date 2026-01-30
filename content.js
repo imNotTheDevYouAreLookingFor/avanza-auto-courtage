@@ -61,7 +61,9 @@
           const payload = JSON.parse(config.body);
           checkAndSwitch(payload);
         }
-      } catch (e) {}
+      } catch (e) {
+        console.warn('[AvanzaOptimizer] Failed to parse fetch body', e.message);
+      }
     }
 
     return originalFetch.apply(this, args);
@@ -99,18 +101,24 @@
           const payload = JSON.parse(postData);
           checkAndSwitch(payload);
         }
-      } catch (e) {}
+      } catch (e) {
+        console.warn('[AvanzaOptimizer] Failed to parse XHR body', e.message);
+      }
     }
     return send.apply(this, arguments);
   };
 
   async function checkAndSwitch(payload) {
     if (isSwitching) return;
+    isSwitching = true;
 
     const price = parseFloat(payload.price);
     const volume = parseFloat(payload.volume);
 
-    if (!price || !volume) return;
+    if (!price || !volume) {
+      isSwitching = false;
+      return;
+    }
 
     const total = price * volume;
 
@@ -142,11 +150,12 @@
       }
     } catch (e) {
       console.error('[AvanzaOptimizer] Check failed', e);
+    } finally {
+      isSwitching = false;
     }
   }
 
   async function performSwitch(newClass) {
-    isSwitching = true;
     try {
       const res = await originalFetch('/_api/trading/courtageclass/courtageclass/update/', {
         method: 'POST',
@@ -168,8 +177,6 @@
       }
     } catch (e) {
       console.error('[AvanzaOptimizer] Switch error', e);
-    } finally {
-      isSwitching = false;
     }
   }
 
