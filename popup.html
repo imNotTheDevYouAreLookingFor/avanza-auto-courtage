@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      width: 280px;
+      padding: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #fff;
+      color: #333;
+    }
+    h1 {
+      font-size: 15px;
+      color: #00d1b2;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+    .section {
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: 11px;
+      color: #888;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+
+    /* Toggle Switch */
+    .toggle-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .toggle-row:last-child {
+      border-bottom: none;
+    }
+    .toggle-row label {
+      font-size: 13px;
+      color: #333;
+    }
+    .toggle-switch {
+      position: relative;
+      width: 44px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.3s;
+      border-radius: 24px;
+    }
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.3s;
+      border-radius: 50%;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+    .toggle-switch input:checked + .toggle-slider {
+      background-color: #00d1b2;
+    }
+    .toggle-switch input:checked + .toggle-slider:before {
+      transform: translateX(20px);
+    }
+
+    .divider {
+      height: 1px;
+      background: #eee;
+      margin: 12px 0;
+    }
+
+    .status {
+      font-size: 12px;
+      color: #00d1b2;
+      text-align: center;
+      margin-top: 12px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-weight: 500;
+    }
+    .status.show { opacity: 1; }
+
+    .tier-toggle {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .tier-btn {
+      flex: 1;
+      padding: 8px;
+      border: 2px solid #ddd;
+      background: #fff;
+      color: #666;
+      cursor: pointer;
+      font-size: 11px;
+      border-radius: 20px;
+      transition: all 0.2s;
+      font-weight: 400;
+    }
+    .tier-btn.active {
+      background: #00d1b2;
+      border-color: #00d1b2;
+      color: #fff;
+      font-weight: 600;
+    }
+    .tier-btn:hover:not(.active) {
+      border-color: #00d1b2;
+    }
+  </style>
+</head>
+<body>
+  <h1>Courtage Optimizer</h1>
+
+  <div class="section">
+    <div class="toggle-row">
+      <label>Automatiskt läge</label>
+      <label class="toggle-switch">
+        <input type="checkbox" id="autoMode">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="section-title">Default-klass (efter order)</div>
+
+    <div class="tier-toggle">
+      <button class="tier-btn active" data-tier="standard">Standard</button>
+      <button class="tier-btn" data-tier="pb">Private Banking</button>
+    </div>
+
+    <div id="standard-classes">
+      <div class="toggle-row">
+        <label>Mini</label>
+        <label class="toggle-switch">
+          <input type="radio" name="defaultClass" value="MINI">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <label>Small</label>
+        <label class="toggle-switch">
+          <input type="radio" name="defaultClass" value="SMALL">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <label>Medium</label>
+        <label class="toggle-switch">
+          <input type="radio" name="defaultClass" value="MEDIUM">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <label>Fast Pris</label>
+        <label class="toggle-switch">
+          <input type="radio" name="defaultClass" value="FASTPRIS">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <div id="pb-classes" style="display: none;">
+      <div class="toggle-row">
+        <label>PB Mini</label>
+        <label class="toggle-switch">
+          <input type="radio" name="defaultClass" value="PRIVATE_BANKING_MINI">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <label>PB</label>
+        <label class="toggle-switch">
+          <input type="radio" name="defaultClass" value="PRIVATE_BANKING">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <label>PB Fast Pris</label>
+        <label class="toggle-switch">
+          <input type="radio" name="defaultClass" value="PRIVATE_BANKING_FASTPRIS">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="toggle-row">
+      <label>Återställ efter order</label>
+      <label class="toggle-switch">
+        <input type="checkbox" id="resetAfterOrder">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <div class="status" id="status">Sparat!</div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
