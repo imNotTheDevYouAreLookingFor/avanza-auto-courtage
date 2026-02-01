@@ -352,7 +352,7 @@
         transition: all 0.2s;
       `;
 
-      btn.textContent = `${bp.label} ${fee} kr`;
+      btn.textContent = isForeign ? bp.label : `${bp.label} ${fee} kr`;
       btn.onclick = (e) => {
         e.preventDefault();
         e.stopPropagation();
