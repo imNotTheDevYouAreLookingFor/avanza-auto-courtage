@@ -67,3 +67,7 @@ För bäst kontroll, använd **manuellt läge** och byt courtageklass själv via
 ## Bidra?
 
 Hittar du en bugg? Skapa en Issue eller en Pull Request!
+
+## Stöd projektet
+
+Gillar du tillägget? ☕ [Köp mig en kaffe](https://buymeacoffee.com/tickr)
