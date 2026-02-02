@@ -37,6 +37,14 @@ Tillägget lyssnar på nätverkstrafiken när Avanza räknar ut det preliminära
 2.  Tillägget fångar den, räknar ut totalbeloppet och kollar mot Avanzas prislista.
 3.  Om din nuvarande klass är fel, skickar tillägget ett "byt klass"-kommando till Avanza med samma säkerhetsnycklar som din inloggade session har.
 
+## Viktigt att veta
+
+**Automatiskt läge med återställning** kan ge oväntade resultat i vissa situationer:
+- Vid delavslut kan courtageklassen återställas innan hela ordern fyllts
+- Ordrar som inte slutförs (t.ex. limit-ordrar som aldrig matchar) återställs inte
+
+För bäst kontroll, använd **manuellt läge** och byt courtageklass själv via knapparna.
+
 ## Changelog
 
 ### v1.1 (2026-02-01)
